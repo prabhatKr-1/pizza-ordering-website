@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import GoogleAuth from "../components/GoogleAuth";
+import { toast } from "react-toastify";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
 export default function SignIn() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
   const { email, password } = formData;
   function onChange(e) {
     setFormData((prevState) => ({
@@ -13,6 +18,26 @@ export default function SignIn() {
       [e.target.id]: e.target.value,
     }));
   }
+
+  async function onSubmit(e) {
+    e.preventDefault();
+    try {
+      const auth = getAuth();
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log(userCredential)
+      if (userCredential.user) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error("LogIn Failed!!");
+    }
+  }
+
   return (
     <div className="login">
       <div className="title text-center m-4 text-5xl">SIGN IN</div>
@@ -26,7 +51,7 @@ export default function SignIn() {
         </div>
 
         <div className="main w-full md:w-[65%] lg:w-[40%] max-w-[90%]">
-          <form action="" className="flex flex-col">
+          <form onSubmit={onSubmit} className="flex flex-col">
             <input
               type="email"
               className="w-full transition ease-in-out px-4 py-2 text-xl border-blue-500-rounded text-orange-700"
@@ -40,6 +65,8 @@ export default function SignIn() {
               className="w-full transition ease-in-out px-4 py-2 text-xl border-blue-500-rounded text-orange-700"
               name="Password"
               id="password"
+              value={password}
+              onChange={onChange}
               placeholder="Enter Your Password"
             />
             <div className="flex justify-between whitespace-nowrap">
