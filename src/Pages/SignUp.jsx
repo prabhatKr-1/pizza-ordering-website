@@ -1,6 +1,15 @@
 import React, { useState } from "react";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { db } from "../firebase";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import GoogleAuth from "../components/GoogleAuth";
+import { useNavigate } from "react-router-dom";
+import {toast} from "react-toastify"
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -8,8 +17,33 @@ export default function SignUp() {
     email: "",
     password: "",
   });
-
+  const navigate = useNavigate();
   const { name, email, password } = formData;
+
+  async function onSubmit(e) {
+    e.preventDefault();
+    try {
+      const auth = getAuth();
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+
+      const user = userCredentials.user;
+      const formData2 = { ...formData };
+      delete formData2.password;
+      formData2.timestamp = serverTimestamp();
+      await setDoc(doc(db, "users", user.uid), formData2);
+      toast.success("Registration Successful!!")
+      navigate("/sing-in");
+    } catch (error) {
+      toast.error("Something went wrong!!")
+    }
+  }
 
   function onChange(e) {
     setFormData((prevState) => ({
@@ -31,7 +65,7 @@ export default function SignUp() {
         </div>
 
         <div className="main w-full md:w-[65%] lg:w-[40%] max-w-[90%]">
-          <form action="" className="flex flex-col">
+          <form onSubmit={onSubmit} className="flex flex-col">
             <input
               type="text"
               className="w-full transition ease-in-out px-4 py-2 text-xl border-blue-500-rounded text-orange-700"
@@ -53,6 +87,8 @@ export default function SignUp() {
               className="w-full transition ease-in-out px-4 py-2 text-xl border-blue-500-rounded text-orange-700"
               name="Password"
               id="password"
+              value={password}
+              onChange={onChange}
               placeholder="Enter Your Password"
             />
             <div className="flex justify-between whitespace-nowrap">
