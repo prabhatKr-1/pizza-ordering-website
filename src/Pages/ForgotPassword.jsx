@@ -1,12 +1,25 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Auth, getAuth, sendPasswordResetEmail } from "firebase/auth";
 import GoogleAuth from "../components/GoogleAuth";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
-
   function onChange(e) {
     setEmail(e.target.value);
+  }
+
+  async function onSubmit(e) {
+    e.preventDefault();
+    try {
+      const auth = getAuth();
+      await sendPasswordResetEmail(auth, email);
+      toast.success("Check Your Mailbox and Reset Password");
+    } catch (error) {
+      console.log(error);
+      toast.error("Request Failed!!");
+    }
   }
 
   return (
@@ -22,7 +35,7 @@ export default function ForgotPassword() {
         </div>
 
         <div className="main w-full md:w-[65%] lg:w-[40%] max-w-[90%]">
-          <form action="" className="flex flex-col">
+          <form onSubmit={onSubmit} className="flex flex-col">
             <input
               type="email"
               className="w-full transition ease-in-out px-4 py-2 text-xl border-blue-500-rounded text-orange-700"
