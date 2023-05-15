@@ -12,9 +12,10 @@ export default function Header() {
     <header className="flex justify-between items-center px-3 max-w-6xl mx-auto ">
       <div>
         <img
-          src="https://images.unsplash.com/photo-1627461985459-51600559fffe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          src="https://png.pngtree.com/png-clipart/20220719/original/pngtree-pizza-logo-design-png-image_8363624.png"
+          cla
           alt="LOGO"
-          className=" cursor-pointer h-12"
+          className=" cursor-pointer h-12 bg-transparent"
           onClick={() => navigate("/")}
         />
       </div>
@@ -24,7 +25,8 @@ export default function Header() {
           <li
             onClick={() => navigate("/")}
             className={`py-3 cursor-pointer text-sm font-semibold   ${
-              pathMathRoute("/") && "text-white border-b-[3px] border-b-red-500 "
+              pathMathRoute("/") &&
+              "text-white border-b-[3px] border-b-red-500 "
             }`}
           >
             Home
@@ -38,15 +40,6 @@ export default function Header() {
           >
             Menu
           </li>
-          {/* <li
-            onClick={() => navigate("/profile")}
-            className={`py-3 text-sm font-semibold cursor-pointer ${
-              pathMathRoute("/profile") &&
-              "text-white border-b-[3px] border-b-red-500"
-            }`}
-          >
-            Profile
-          </li> */}
           <li
             onClick={() => navigate("/sign-in")}
             className={`py-3 text-sm font-semibold cursor-pointer ${
@@ -56,24 +49,15 @@ export default function Header() {
           >
             Sign In
           </li>
-          {/* <li
-            onClick={() => navigate("/sign-up")}
+          <li
+            onClick={() => navigate("/about-us")}
             className={`py-3 text-sm font-semibold cursor-pointer ${
-              pathMathRoute("/sing-up") &&
+              pathMathRoute("/about-us") &&
               "text-white border-b-[3px] border-b-red-500"
             }`}
           >
-            Sign Up
-          </li> */}
-          {/* <li
-            onClick={() => navigate("/forgot-password")}
-            className={`py-3 text-sm font-semibold  cursor-pointer ${
-              pathMathRoute("/forgot-password") &&
-              "text-white border-b-[3px] border-b-red-500"
-            }`}
-          >
-            Forgot Password
-          </li> */}
+            About Us
+          </li>
         </ul>
       </div>
     </header>
