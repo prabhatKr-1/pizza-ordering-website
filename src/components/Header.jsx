@@ -26,7 +26,7 @@ export default function Header() {
             onClick={() => navigate("/")}
             className={`py-3 cursor-pointer text-sm font-semibold   ${
               pathMathRoute("/") &&
-              "text-white border-b-[3px] border-b-red-500 "
+              "text-black border-b-[3px] border-b-red-500 "
             }`}
           >
             Home
@@ -35,16 +35,25 @@ export default function Header() {
             onClick={() => navigate("/menu")}
             className={`py-3 text-sm font-semibold cursor-pointer ${
               pathMathRoute("/menu") &&
-              "text-white border-b-[3px] border-b-red-500"
+              "text-black border-b-[3px] border-b-red-500"
             }`}
           >
             Menu
           </li>
           <li
+            onClick={() => navigate("/bag")}
+            className={`py-3 text-sm font-semibold cursor-pointer ${
+              pathMathRoute("/bag") &&
+              "text-black border-b-[3px] border-b-red-500"
+            }`}
+          >
+            Bag
+          </li>
+          <li
             onClick={() => navigate("/sign-in")}
             className={`py-3 text-sm font-semibold cursor-pointer ${
               pathMathRoute("/sign-in") &&
-              "text-white border-b-[3px] border-b-red-500"
+              "text-black border-b-[3px] border-b-red-500"
             }`}
           >
             Sign In
@@ -53,7 +62,7 @@ export default function Header() {
             onClick={() => navigate("/about-us")}
             className={`py-3 text-sm font-semibold cursor-pointer ${
               pathMathRoute("/about-us") &&
-              "text-white border-b-[3px] border-b-red-500"
+              "text-black border-b-[3px] border-b-red-500"
             }`}
           >
             About Us

@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
+/* body{
     background-image: url("https://wallpaperaccess.com/full/866645.jpg");
     background-size: cover;
     color:white;
     background-repeat: no-repeat; 
-}
+} */

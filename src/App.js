@@ -3,6 +3,7 @@ import Home from "./Pages/Home";
 import Menu from "./Pages/Menu";
 import Profile from "./Pages/Profile";
 import SignIn from "./Pages/SignIn";
+import Bag from "./Pages/Bag";
 import SignUp from "./Pages/SignUp";
 import AboutUs from "./Pages/AboutUs";
 import ForgotPassword from "./Pages/ForgotPassword";
@@ -20,6 +21,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/bag" element={<Bag />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
