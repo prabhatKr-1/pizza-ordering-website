@@ -1,8 +1,8 @@
+
 import React, { useState } from "react";
 
-const Cart = () => {
-  const [cartItems, setCartItems] = useState([]);
-
+const Cart = ({ cartItems , setCartItems }) => {
+  // const [cartItems, setCartItems] = useState([]);
   const handleRemoveItem = (index) => {
     const updatedCartItems = [...cartItems];
     updatedCartItems.splice(index, 1);
@@ -10,10 +10,7 @@ const Cart = () => {
   };
 
   const calculateSubTotal = () => {
-    return cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
+    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
   const calculateTax = () => {
@@ -29,7 +26,7 @@ const Cart = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Cart</h1>
+     <h1 className="text-3xl font-bold mb-6">Cart</h1>
       {cartItems.length === 0 ? (
         <p>No items in the cart.</p>
       ) : (

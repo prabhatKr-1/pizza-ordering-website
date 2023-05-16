@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import {toast} from 'react-toastify'
 const PizzaCard = ({ pizza, addToCart }) => {
   const [selectedSize, setSelectedSize] = useState(pizza.varients[0]);
   const [quantity, setQuantity] = useState(1);
@@ -15,6 +15,7 @@ const PizzaCard = ({ pizza, addToCart }) => {
   };
 
   const handleAddToCart = () => {
+    toast.success("Item Added To Cart")
     const item = {
       name: pizza.name,
       price: pizza.prices[0][selectedSize] * quantity,

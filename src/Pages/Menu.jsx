@@ -1,14 +1,10 @@
+
 import React, { useState } from "react";
 import pizzas from "../PizzaMenu";
 import PizzaCard from "../components/PizzaCard";
 
-const Menu = () => {
+const Menu = ({ addToCart }) => {
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [cartItems, setCartItems] = useState([]);
-
-  const addToCart = (item) => {
-    setCartItems([...cartItems, item]);
-  };
 
   const filteredPizzas =
     selectedCategory === "all"
