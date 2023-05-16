@@ -1,9 +1,24 @@
 import React from "react";
+import { useEffect, useState } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
-  function pathMathRoute(route) {
+  const [pageState, setPageState] = useState("Sign in");
+
+  const auth = getAuth();
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setPageState("Profile");
+      } else {
+        setPageState("Sign in");
+      }
+    });
+  }, [auth]);
+
+  function pathMatchRoute(route) {
     if (route === location.pathname) {
       return true;
     }
@@ -25,7 +40,7 @@ export default function Header() {
           <li
             onClick={() => navigate("/")}
             className={`py-3 cursor-pointer text-sm font-semibold   ${
-              pathMathRoute("/") &&
+              pathMatchRoute("/") &&
               "text-black border-b-[3px] border-b-red-500 "
             }`}
           >
@@ -34,7 +49,7 @@ export default function Header() {
           <li
             onClick={() => navigate("/menu")}
             className={`py-3 text-sm font-semibold cursor-pointer ${
-              pathMathRoute("/menu") &&
+              pathMatchRoute("/menu") &&
               "text-black border-b-[3px] border-b-red-500"
             }`}
           >
@@ -43,25 +58,25 @@ export default function Header() {
           <li
             onClick={() => navigate("/cart")}
             className={`py-3 text-sm font-semibold cursor-pointer ${
-              pathMathRoute("/cart") &&
+              pathMatchRoute("/cart") &&
               "text-black border-b-[3px] border-b-red-500"
             }`}
           >
             Cart
           </li>
           <li
-            onClick={() => navigate("/sign-in")}
+            onClick={() => navigate("/profile")}
             className={`py-3 text-sm font-semibold cursor-pointer ${
-              pathMathRoute("/sign-in") &&
+              (pathMatchRoute("/sign-in") || pathMatchRoute("/profile")) &&
               "text-black border-b-[3px] border-b-red-500"
             }`}
           >
-            Sign In
+            {pageState}
           </li>
           <li
             onClick={() => navigate("/about-us")}
             className={`py-3 text-sm font-semibold cursor-pointer ${
-              pathMathRoute("/about-us") &&
+              pathMatchRoute("/about-us") &&
               "text-black border-b-[3px] border-b-red-500"
             }`}
           >

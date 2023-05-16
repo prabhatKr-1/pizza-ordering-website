@@ -9,13 +9,14 @@ import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import GoogleAuth from "../components/GoogleAuth";
 import { useNavigate } from "react-router-dom";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
+    address: "",
   });
   const navigate = useNavigate();
   const { name, email, password } = formData;
@@ -37,11 +38,12 @@ export default function SignUp() {
       const formData2 = { ...formData };
       delete formData2.password;
       formData2.timestamp = serverTimestamp();
-      await setDoc(doc(db, "users", user.uid), formData2);
-      toast.success("Registration Successful!!")
-      navigate("/sing-in");
+      await setDoc(doc(db, "users_new", user.uid), formData2);
+      toast.success("Registration Successful!!");
+      navigate("/menu");
     } catch (error) {
-      toast.error("Something went wrong!!")
+      toast.error("Something went wrong!!");
+      console.log(error);
     }
   }
 
