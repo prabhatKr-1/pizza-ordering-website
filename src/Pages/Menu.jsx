@@ -4,6 +4,11 @@ import PizzaCard from "../components/PizzaCard";
 
 const Menu = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [cartItems, setCartItems] = useState([]);
+
+  const addToCart = (item) => {
+    setCartItems([...cartItems, item]);
+  };
 
   const filteredPizzas =
     selectedCategory === "all"
@@ -54,7 +59,7 @@ const Menu = () => {
             key={index}
             className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 p-2 flex items-stretch"
           >
-            <PizzaCard pizza={pizza} />
+            <PizzaCard pizza={pizza} addToCart={addToCart} />
           </div>
         ))}
       </div>

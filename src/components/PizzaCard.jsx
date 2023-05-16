@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const PizzaCard = ({ pizza }) => {
+const PizzaCard = ({ pizza, addToCart }) => {
   const [selectedSize, setSelectedSize] = useState(pizza.varients[0]);
   const [quantity, setQuantity] = useState(1);
 
@@ -14,9 +14,22 @@ const PizzaCard = ({ pizza }) => {
     setSelectedSize(event.target.value);
   };
 
+  const handleAddToCart = () => {
+    const item = {
+      name: pizza.name,
+      price: pizza.prices[0][selectedSize] * quantity,
+      quantity: quantity,
+    };
+    addToCart(item);
+  };
+
   return (
     <div className="flex flex-col items-center justify-between bg-white rounded-lg shadow-lg p-6 mx-4 my-4 max-w-sm">
-      <img src={pizza.image} alt={pizza.name} className="w-48 h-48 object-cover" />
+      <img
+        src={pizza.image}
+        alt={pizza.name}
+        className="w-48 h-48 object-cover"
+      />
       <div className="flex items-center justify-between w-full mt-4">
         <div className="flex flex-col">
           <h2 className="text-lg font-semibold text-gray-700">{pizza.name}</h2>
@@ -49,8 +62,20 @@ const PizzaCard = ({ pizza }) => {
             />
           </div>
         </div>
-        <div className="text-2xl text-red-500 font-bold">{pizza.category === "veg" ? <i className="fas fa-leaf"></i> : <i className="fas fa-drumstick-bite"></i>}</div>
+        <div className="text-2xl text-red-500 font-bold">
+          {pizza.category === "veg" ? (
+            <i className="fas fa-leaf"></i>
+          ) : (
+            <i className="fas fa-drumstick-bite"></i>
+          )}
+        </div>
       </div>
+      <button
+        className="px-4 py-2 mt-4 bg-blue-500 text-white rounded-lg"
+        onClick={handleAddToCart}
+      >
+        Add to Cart
+      </button>
     </div>
   );
 };

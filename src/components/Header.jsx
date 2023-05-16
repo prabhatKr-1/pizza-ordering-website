@@ -41,13 +41,13 @@ export default function Header() {
             Menu
           </li>
           <li
-            onClick={() => navigate("/bag")}
+            onClick={() => navigate("/cart")}
             className={`py-3 text-sm font-semibold cursor-pointer ${
-              pathMathRoute("/bag") &&
+              pathMathRoute("/cart") &&
               "text-black border-b-[3px] border-b-red-500"
             }`}
           >
-            Bag
+            Cart
           </li>
           <li
             onClick={() => navigate("/sign-in")}
