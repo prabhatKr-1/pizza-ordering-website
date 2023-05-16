@@ -38,7 +38,7 @@ export default function SignUp() {
       const formData2 = { ...formData };
       delete formData2.password;
       formData2.timestamp = serverTimestamp();
-      await setDoc(doc(db, "users_new", user.uid), formData2);
+      await setDoc(doc(db, "customers", user.uid), formData2);
       toast.success("Registration Successful!!");
       navigate("/menu");
     } catch (error) {
