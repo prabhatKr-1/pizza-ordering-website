@@ -11,7 +11,7 @@ import ForgotPassword from "./Pages/ForgotPassword";
 import Header from "./components/Header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import PrivateRoute from "./components/PrivateRoute";
 function App() {
   const [cartItems, setCartItems] = useState([]);
 
@@ -25,14 +25,17 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route
-            path="/menu"
-            element={<Menu addToCart={addToCart} />}
-          />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/menu" element={<Menu addToCart={addToCart} />} />
+          <Route path ="/profile" element={<PrivateRoute/>}>
+            <Route path="/profile" element={<Profile />} />
+          </Route>
+
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} />} />
+          <Route
+            path="/cart"
+            element={<Cart cartItems={cartItems} setCartItems={setCartItems} />}
+          />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
