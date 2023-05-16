@@ -1,14 +1,14 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1 className="text-3xl font-bold mb-6">Welcome to Pizza Drip</h1>
+      <h1 className="text-3xl font-bold mb-6">Welcome to Pizza Paradisoo</h1>
       <div className="relative">
         <Carousel
           showArrows={false}
@@ -16,8 +16,8 @@ const Home = () => {
           showStatus={false}
           infiniteLoop={true}
           autoPlay={true}
-          interval={5000}
-          stopOnHover={true}
+          interval={3000}
+          stopOnHover={false}
           swipeable={true}
           emulateTouch={true}
           dynamicHeight={false}
@@ -77,9 +77,7 @@ const Home = () => {
               <h2 className="text-2xl font-semibold text-yellow-700">
                 Order Online for Fast Delivery
               </h2>
-              <p className="mt-2 text-lg text-white">
-                Already a member?.
-              </p>
+              <p className="mt-2 text-lg text-white">Already a member?.</p>
               <Link
                 to="/sign-in"
                 className="inline-block mt-4 px-4 py-2 bg-blue-800 text-white font-semibold rounded-lg hover:bg-yellow-600 transition duration-200"
@@ -89,6 +87,22 @@ const Home = () => {
             </div>
           </div>
         </Carousel>
+      </div>
+
+      <p className="item-center text-center my-4 mx-4 py-10 px-4 italic font-serif">
+        Welcome to Pizza Paradiso! We are passionate about bringing you the
+        absolute best in pizza perfection. Each pizza we create is a
+        masterpiece, meticulously crafted with love and care using the freshest,
+        high-quality ingredients. From our classic favorites to our innovative
+        specialty creations, our menu is designed to satisfy every craving. Our
+        commitment to exceptional service ensures that your dining experience is
+        nothing short of extraordinary. Join us at Pizza Paradiso and embark on
+        a culinary journey filled with delicious flavors, warm ambiance, and
+        unparalleled hospitality.
+      </p>
+      <div className="footer fixed bottom-0 text-center text-white">
+        {" "}
+        &#169; PizzaParadisoo 2023
       </div>
     </div>
   );

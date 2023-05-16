@@ -44,7 +44,7 @@ export default function SignIn() {
       <div className="content flex justify-center items-center mx-auto flex-wrap px-1 py-1 max-w-10xl text-black">
         <div className="img m-4 lg:w-[50%] m:w-[65%] flex items-center justify-center">
           <img
-            src="https://images.unsplash.com/photo-1611915365928-565c527a0590?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80"
+            src="https://images.saymedia-content.com/.image/c_limit%2Ccs_srgb%2Cq_auto:eco%2Cw_750/MTc1MjQxNzU0MjUxODk1OTAz/pizza-quotes-and-caption-ideas.webp"
             alt="pizza-image"
             className="w-full rounded max-w-[90%] "
           />

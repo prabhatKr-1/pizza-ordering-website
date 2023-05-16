@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Auth, getAuth, sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import GoogleAuth from "../components/GoogleAuth";
 
 export default function ForgotPassword() {
@@ -28,7 +28,7 @@ export default function ForgotPassword() {
       <div className="content flex justify-center items-center mx-auto flex-wrap px-1 py-1 max-w-10xl text-black">
         <div className="img m-4 lg:w-[50%] m:w-[65%] flex items-center justify-center">
           <img
-            src="https://images.unsplash.com/photo-1611915365928-565c527a0590?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1025&q=80"
+            src="https://wallpaperaccess.com/full/8300608.jpg"
             alt="pizza-image"
             className="w-full rounded max-w-[90%]"
           />
