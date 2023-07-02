@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { getAuth, updateProfile } from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
-import  PizzaMenu  from "../PizzaMenu";
+import PizzaMenu from "../PizzaMenu";
 
 const Cart = ({ cartItems, setCartItems }) => {
   const handleRemoveItem = (index) => {
@@ -15,20 +15,20 @@ const Cart = ({ cartItems, setCartItems }) => {
   const handleIncreaseQuantity = (index) => {
     const updatedCartItems = [...cartItems];
     const item = updatedCartItems[index];
-  
+
     // Check if the item already exists in the cart
     const existingItem = updatedCartItems.find((cartItem) => cartItem.name === item.name);
-  
+
     if (existingItem) {
       // If the item exists, increase the quantity
       existingItem.quantity += 1;
     }
-  
+
     setCartItems(updatedCartItems);
   };
-  
-  
-  
+
+
+
 
   const handleDecreaseQuantity = (index) => {
     const updatedCartItems = [...cartItems];
@@ -63,11 +63,18 @@ const Cart = ({ cartItems, setCartItems }) => {
   }
 
   function placeOrder() {
-    const amt = calculateTotal();
-    toast.success("Your order is successfully placed!");
-    toast.success("Order Amount is ₹" + amt + " and will be delivered soon! Thanks");
-    setCartItems([]);
-    updateDatabase(amt);
+    const AuthenticUser = auth.currentUser;
+    if (AuthenticUser === null) {
+      toast.warning("Please Login first To Place a order !");
+    }
+    else {
+      const amt = calculateTotal();
+      toast.success("Your order is successfully placed!");
+      toast.success("Order Amount is ₹" + amt + " and will be delivered soon! Thanks");
+      setCartItems([]);
+      updateDatabase(amt);
+    }
+
   }
 
   return (
